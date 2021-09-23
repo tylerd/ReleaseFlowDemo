@@ -29,3 +29,21 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: Staging
+    if: ${{ github.event_name == 'release' }}
+    
+    steps:
+    - name: Deploy to Staging
+      run: echo "Deploying to Staging"
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: Production
+    if: ${{ github.event_name == 'release' }}
+    
+    steps:
+    - name: Deploy to Production
+      run: echo "Deploying to Production"
